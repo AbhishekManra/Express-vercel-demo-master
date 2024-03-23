@@ -8,12 +8,12 @@
     ],
     "routes": [
       {
-        "src": "/(.*)",
+        "src": "/myroute",
+        "methods": ["GET"],
         "dest": "/"
       },
       {
-        "src": "/myroute",
-        "methods": ["GET"],
+        "src": "/(.*)",
         "dest": "/"
       }
     ]
