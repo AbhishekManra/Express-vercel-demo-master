@@ -13,7 +13,8 @@
       },
       {
         "src": "/myroute",
-        "dest": "/myroute" 
+        "methods": ["GET"],
+        "dest": "/"
       }
     ]
   }
