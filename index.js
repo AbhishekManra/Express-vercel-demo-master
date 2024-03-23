@@ -5,7 +5,7 @@ const port = 9000;
 app.use("/", (req, res) => {
   res.json({ message: "Express App" });
 });
-app.get("/myroute", (req, res) => {
+app.use("/myroute", (req, res) => {
   res.json({ message: "This is the vercel route" });
 });
 
