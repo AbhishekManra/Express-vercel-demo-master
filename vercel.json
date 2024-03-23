@@ -8,12 +8,12 @@
     ],
     "routes": [
       {
-        "src":"/",
-        "dest":"/"
-      },
-      {
         "src": "/myroute",
         "dest": "/myroute"
+      },
+      {
+        "src":"/",
+        "dest":"/"
       }
     ]
   }
