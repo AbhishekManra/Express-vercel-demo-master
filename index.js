@@ -5,6 +5,8 @@ import * as dotenv from 'dotenv';
 const app = express();
 const port = 9000;
 
+app.use(express.json());
+
 dotenv.config(); // Load environment variables from .env file
 
 // Access your API key as an environment variable (see "Set up your API key" above)
