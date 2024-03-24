@@ -9,7 +9,10 @@ dotenv.config(); // Load environment variables from .env file
 
 // Access your API key as an environment variable (see "Set up your API key" above)
 
-app.get("/myroute", async (req, res) => {
+// app.get("/myroute", async (req, res) => {
+// });
+
+app.use("/", async(req, res) => {
   const genAI = new GoogleGenerativeAI(process.env.API_KEY);
   console.log(req);
   const model = genAI.getGenerativeModel({ model: "gemini-pro" });
@@ -18,10 +21,6 @@ app.get("/myroute", async (req, res) => {
   const response = await result.response;
   const text = response.text();
   res.json({ message: text });
-});
-
-app.use("/", (req, res) => {
-  res.json({ message: "Express App" });
 });
 
 app.listen(9000, () => {
