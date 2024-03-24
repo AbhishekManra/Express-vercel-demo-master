@@ -13,7 +13,7 @@ dotenv.config(); // Load environment variables from .env file
 // });
 
 app.get("/", async (req, res) => {
-  const genAI = new GoogleGenerativeAI("AIzaSyCfdxk1c4hbTiqr-0OL4M8Y0STgOGVXmYk");
+  const genAI = new GoogleGenerativeAI(process.env.API_KEY);
   console.log("api loaded");
   const model = genAI.getGenerativeModel({ model: "gemini-pro" });
   const prompt = "Write a story about a magic backpack in short.";
