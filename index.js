@@ -12,19 +12,21 @@ dotenv.config(); // Load environment variables from .env file
 // app.get("/myroute", async (req, res) => {
 // });
 
-app.get("/", async(req, res) => {
-  res.json({ message: "text" });
-  const genAI = new GoogleGenerativeAI(process.env.API_KEY);
-  console.log("api loaded")
+app.get("/", async (req, res) => {
+  const genAI = new GoogleGenerativeAI("AIzaSyCfdxk1c4hbTiqr-0OL4M8Y0STgOGVXmYk");
+  console.log("api loaded");
   const model = genAI.getGenerativeModel({ model: "gemini-pro" });
   const prompt = "Write a story about a magic backpack in short.";
-  console.log("generated promt")
+  console.log("generated prompt");
   const result = await model.generateContent(prompt);
-  console.log("input got  promt")
+  console.log("input got prompt");
   const response = await result.response;
-  console.log("Got response")
+  console.log("Got response");
   const text = response.text();
   console.log(text);
+
+  // Send the response after all the operations have completed
+  res.json({ message: text });
 });
 
 app.listen(9000, () => {
