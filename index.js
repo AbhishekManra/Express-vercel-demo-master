@@ -12,6 +12,8 @@ const genAI = new GoogleGenerativeAI(process.env.API_KEY);
 
 app.get("/myroute", async (req, res) => {
   // For text-only input, use the gemini-pro model
+  console.log(req);
+  res.json({message:"waiting"});
   const model = genAI.getGenerativeModel({ model: "gemini-pro" });
 
   const prompt = "Write a story about a magic backpack in short.";
