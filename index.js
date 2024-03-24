@@ -12,22 +12,43 @@ dotenv.config(); // Load environment variables from .env file
 // app.get("/myroute", async (req, res) => {
 // });
 
-app.get("/", async (req, res) => {
-  const genAI = new GoogleGenerativeAI(process.env.API_KEY);
-  console.log("api loaded");
-  const model = genAI.getGenerativeModel({ model: "gemini-pro" });
-  const prompt = "Write a story about a magic backpack in short.";
-  console.log("generated prompt");
-  const result = await model.generateContent(prompt);
-  console.log("input got prompt");
-  const response = await result.response;
-  console.log("Got response");
-  const text = response.text();
-  console.log(text);
+app.post("/", async (req, res) => {
+  try {
+    const genAI = new GoogleGenerativeAI(process.env.API_KEY);
+    const model = genAI.getGenerativeModel({ model: "gemini-pro" });
 
-  // Send the response after all the operations have completed
-  res.json({ message: text });
+    // Get the prompt from the request body
+    const { prompt } = req.body;
+
+    // Check if the prompt is provided
+    if (!prompt) {
+      return res.status(400).json({ error: "Prompt is required" });
+    }
+
+    const result = await model.generateContent(prompt);
+    const response = await result.response;
+    const text = response.text();
+    console.log(text);
+
+    // Send the response after all the operations have completed
+    res.json({ message: text });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "An error occurred" });
+  }
 });
+
+// app.get("/", async (req, res) => {
+//   const genAI = new GoogleGenerativeAI(process.env.API_KEY);
+//   const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+//   const prompt = "Write a story about a magic backpack in short.";
+//   const result = await model.generateContent(prompt);
+//   const response = await result.response;
+//   const text = response.text();
+
+//   // Send the response after all the operations have completed
+//   res.json({ message: text });
+// });
 
 app.listen(9000, () => {
   console.log(`Starting Server on Port ${port}`);
