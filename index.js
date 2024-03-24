@@ -15,10 +15,14 @@ dotenv.config(); // Load environment variables from .env file
 app.get("/", async(req, res) => {
   res.json({ message: "text" });
   const genAI = new GoogleGenerativeAI(process.env.API_KEY);
+  console.log("api loaded")
   const model = genAI.getGenerativeModel({ model: "gemini-pro" });
   const prompt = "Write a story about a magic backpack in short.";
+  console.log("generated promt")
   const result = await model.generateContent(prompt);
+  console.log("input got  promt")
   const response = await result.response;
+  console.log("Got response")
   const text = response.text();
   console.log(text);
 });
