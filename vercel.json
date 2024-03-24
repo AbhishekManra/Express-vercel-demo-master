@@ -9,6 +9,7 @@
     "routes": [
       {
         "src":"/",
+        "methods": ["GET"],
         "dest":"/"
       }
     ],
