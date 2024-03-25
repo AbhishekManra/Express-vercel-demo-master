@@ -7,12 +7,7 @@ const port = 9000;
 
 app.use(express.json());
 
-dotenv.config(); // Load environment variables from .env file
-
-// Access your API key as an environment variable (see "Set up your API key" above)
-
-// app.get("/myroute", async (req, res) => {
-// });
+dotenv.config(); 
 
 app.post("/", async (req, res) => {
   try {
@@ -21,6 +16,7 @@ app.post("/", async (req, res) => {
 
     // Get the prompt from the request body
     const { prompt } = req.body;
+    console.log(prompt);
 
     // Check if the prompt is provided
     if (!prompt) {
