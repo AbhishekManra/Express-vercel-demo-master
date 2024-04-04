@@ -36,18 +36,6 @@ app.post("/", async (req, res) => {
   }
 });
 
-// app.get("/", async (req, res) => {
-//   const genAI = new GoogleGenerativeAI(process.env.API_KEY);
-//   const model = genAI.getGenerativeModel({ model: "gemini-pro" });
-//   const prompt = "Write a story about a magic backpack in short.";
-//   const result = await model.generateContent(prompt);
-//   const response = await result.response;
-//   const text = response.text();
-
-//   // Send the response after all the operations have completed
-//   res.json({ message: text });
-// });
-
 app.listen(9000, () => {
   console.log(`Starting Server on Port ${port}`);
 });
